@@ -1,7 +1,7 @@
 # Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Михаил Москалев](https://up.htmlacademy.ru/ecmascript/5/user/158040).
-* Наставник: [Сергей Вохмянин].
+* Наставник: [Сергей Вохмянин](https://htmlacademy.ru/profile/id530823).
 
 ---
 
