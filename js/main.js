@@ -40,50 +40,42 @@ const Screen = {
   CONFIRM: templates.content.querySelector(`.modal-confirm__wrap`)
 };
 
-const screens = [];
-
-for (const key in Screen) {
-  if (key) {
-    screens.push(Screen[key]);
-  }
-}
+const screens = Object.values(Screen);
 
 let currentScreen = 0;
 
-const showScreen = (arg) => { // можно указать конкретный номер экрана либо следующий или предыдущий экран
-  if (typeof arg === `number` && arg >= 0 && arg < screens.length) {
-    container.innerHTML = ``;
-    container.appendChild((screens[arg]).cloneNode(true));
-    currentScreen = arg;
+let Page = {
+  PREV: --currentScreen,
+  NEXT: ++currentScreen
+};
 
-    return;
-  } else if (arg === `next` && currentScreen !== screens.length - 1) {
+const showScreen = (screen = 0) => {
+  if (typeof screen === `number` && screen >= 0 && screen < screens.length) {
     container.innerHTML = ``;
-    container.appendChild((screens[currentScreen + 1]).cloneNode(true));
-    currentScreen++;
+    container.appendChild((screens[screen]).cloneNode(true));
+  }
+};
 
-    return;
-  } else if (arg === `prev` && currentScreen !== 0) {
-    container.innerHTML = ``;
-    container.appendChild((screens[currentScreen - 1]).cloneNode(true));
-    currentScreen--;
-
-    return;
+const switchScreen = (arg) => { // можно указать конкретный номер экрана либо следующий или предыдущий экран
+  if (arg === Page.NEXT && currentScreen !== screens.length - 1) {
+    showScreen(Page.NEXT);
+  } else if (arg === Page.PREV && currentScreen !== 0) {
+    showScreen(Page.PREV);
   }
 };
 
 document.addEventListener(`keydown`, (e) => {
   switch (e.keyCode) {
     case Keycode.LEFT:
-      showScreen(`prev`);
+      switchScreen(Page.PREV);
       break;
     case Keycode.RIGHT:
-      showScreen(`next`);
+      switchScreen(Page.NEXT);
       break;
   }
 });
 
-showScreen(currentScreen);
+buttonPrev.addEventListener(`click`, () => switchScreen(Page.PREV));
+buttonNext.addEventListener(`click`, () => switchScreen(Page.NEXT));
 
-buttonPrev.addEventListener(`click`, () => showScreen(`prev`));
-buttonNext.addEventListener(`click`, () => showScreen(`next`));
+showScreen();
