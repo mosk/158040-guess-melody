@@ -1,30 +1,30 @@
 'use strict';
 
-const KEYCODE = {
-  left: 37,
-  right: 39
+const Keycode = {
+  LEFT: 37,
+  RIGHT: 39
 };
 
 const app = document.querySelector('.app');
 const container = app.querySelector('section.main');
 const templates = document.querySelector('#templates');
 const templateArrows = `<div class="arrows__wrap">
-                  <style>
-                    .arrows__wrap {
-                      position: absolute;
-                      top: 135px;
-                      left: 50%;
-                      margin-left: -56px;
-                    }
-                    .arrows__btn {
-                      background: none;
-                      border: 2px solid black;
-                      padding: 5px 20px;
-                    }
-                  </style>
-                  <button class="arrows__btn arrows__btn--prev"><-</button>
-                  <button class="arrows__btn arrows__btn--next">-></button>
-                </div>`
+  <style>
+    .arrows__wrap {
+      position: absolute;
+      top: 135px;
+      left: 50%;
+      margin-left: -56px;
+    }
+    .arrows__btn {
+      background: none;
+      border: 2px solid black;
+      padding: 5px 20px;
+    }
+  </style>
+  <button class="arrows__btn arrows__btn--prev"><-</button>
+  <button class="arrows__btn arrows__btn--next">-></button>
+</div>`
 
 app.insertAdjacentHTML('beforeend', templateArrows);
 
@@ -32,12 +32,12 @@ const buttonPrev = app.querySelector('.arrows__btn--prev');
 const buttonNext = app.querySelector('.arrows__btn--next');
 
 const Screen = {
-  welcome: templates.content.querySelector('.main--welcome'),
-  genre: templates.content.querySelector('.main--level-genre'),
-  artist: templates.content.querySelector('.main--level-artist'),
-  result: templates.content.querySelector('.main--result'),
-  error: templates.content.querySelector('.modal-error'),
-  confirm: templates.content.querySelector('.modal-confirm__wrap')
+  WELCOME: templates.content.querySelector('.main--welcome'),
+  GENRE: templates.content.querySelector('.main--level-genre'),
+  ARTIST: templates.content.querySelector('.main--level-artist'),
+  RESULT: templates.content.querySelector('.main--result'),
+  ERROR: templates.content.querySelector('.modal-error'),
+  CONFIRM: templates.content.querySelector('.modal-confirm__wrap')
 };
 
 const screens = [];
@@ -51,44 +51,41 @@ let currentScreen = 0;
 const showScreen = (arg) => { // можно указать конкретный номер экрана либо следующий или предыдущий экран
   container.innerHTML = ``;
 
-  if (typeof arg === Number && arg >= 0 && arg < screens.length) {
+  if (typeof arg === `number` && arg >= 0 && arg < screens.length) {
     container.appendChild((screens[arg]).cloneNode(true));
     currentScreen = arg;
-    console.log(`Номер экрана - ${currentScreen}`);
 
     return;
   }
 
   switch (arg) {
     case 'next':
+      if (currentScreen === screens.length - 1) return;
+
       container.appendChild((screens[currentScreen + 1]).cloneNode(true));
       currentScreen++;
-      console.log(`Номер экрана - ${currentScreen}`);
       break;
     case 'prev':
+      if (currentScreen === 0) return;
+
       container.appendChild((screens[currentScreen - 1]).cloneNode(true));
       currentScreen--;
-      console.log(`Номер экрана - ${currentScreen}`);
       break;
   }
 };
 
 document.addEventListener('keydown', (e) => {
   switch (e.keyCode) {
-    case KEYCODE.left:
-      console.log('кнопка влево');
-      showScreen('prev');
+    case Keycode.LEFT:
+      showScreen(`prev`);
       break;
-    case KEYCODE.right:
-      console.log('кнопка вправо');
-      showScreen('next');
+    case Keycode.RIGHT:
+      showScreen(`next`);
       break;
   }
 });
 
 showScreen(currentScreen);
 
-buttonPrev.addEventListener('click', () => showScreen('prev'));
-buttonNext.addEventListener('click', () => showScreen('next'));
-
-console.log(`Номер экрана - ${currentScreen}`);
+buttonPrev.addEventListener('click', () => showScreen(`prev`));
+buttonNext.addEventListener('click', () => showScreen(`next`));
