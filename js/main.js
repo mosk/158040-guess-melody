@@ -45,32 +45,39 @@ const screens = Object.values(Template);
 let currentScreen = 0;
 
 const Screen = {
-  FIRST: 0,
-  LAST: screens.length - 1,
-  PREV: () => currentScreen > Screen.FIRST ? --currentScreen : currentScreen = Screen.LAST,
-  NEXT: () => currentScreen < Screen.LAST ? ++currentScreen : currentScreen = Screen.FIRST
-};
+  PREV: `prev`,
+  NEXT: `next`
+}
 
 const showScreen = (screen = 0) => {
-  if (screen > 0 || screen < screens.length) {
-    container.innerHTML = ``;
-    container.appendChild((screens[screen]).cloneNode(true));
+  if (typeof screen === `number`) {
     currentScreen = screen;
+    console.log(1);
+  } else if (screen === Screen.PREV || currentScreen > 0) {
+    currentScreen = currentScreen - 1;
+    console.log(2);
+  } else if (screen === Screen.NEXT || currentScreen < screens.length - 1) {
+    currentScreen = currentScreen + 1;
+    console.log(3);
+  } else {
+    return;
   }
+  container.innerHTML = ``;
+  container.appendChild((screens[currentScreen]).cloneNode(true));
 };
 
 document.addEventListener(`keydown`, (e) => {
   switch (e.keyCode) {
     case Keycode.LEFT:
-      showScreen(Screen.PREV());
+      showScreen(Screen.PREV);
       break;
     case Keycode.RIGHT:
-      showScreen(Screen.NEXT());
+      showScreen(Screen.NEXT);
       break;
   }
 });
 
-buttonPrev.addEventListener(`click`, () => showScreen(Screen.PREV()));
-buttonNext.addEventListener(`click`, () => showScreen(Screen.NEXT()));
+buttonPrev.addEventListener(`click`, () => showScreen(Screen.PREV));
+buttonNext.addEventListener(`click`, () => showScreen(Screen.NEXT));
 
 showScreen();
