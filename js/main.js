@@ -46,19 +46,18 @@ let currentScreen = 0;
 
 const Screen = {
   PREV: `prev`,
-  NEXT: `next`
-}
+  NEXT: `next`,
+  FIRST: 0,
+  LAST: screens.length - 1
+};
 
 const showScreen = (screen = 0) => {
   if (typeof screen === `number`) {
     currentScreen = screen;
-    console.log(1);
-  } else if (screen === Screen.PREV || currentScreen > 0) {
-    currentScreen = currentScreen - 1;
-    console.log(2);
-  } else if (screen === Screen.NEXT || currentScreen < screens.length - 1) {
-    currentScreen = currentScreen + 1;
-    console.log(3);
+  } else if (screen === Screen.PREV && currentScreen > Screen.FIRST) {
+    currentScreen--;
+  } else if (screen === Screen.NEXT && currentScreen < Screen.LAST) {
+    currentScreen++;
   } else {
     return;
   }
