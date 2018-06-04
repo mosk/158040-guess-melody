@@ -8,6 +8,7 @@ const Keycode = {
 const app = document.querySelector(`.app`);
 const container = app.querySelector(`section.main`);
 const templates = document.querySelector(`#templates`);
+
 const templateArrows = `<div class="arrows__wrap">
   <style>
     .arrows__wrap {
@@ -31,7 +32,7 @@ app.insertAdjacentHTML(`beforeend`, templateArrows);
 const buttonPrev = app.querySelector(`.arrows__btn--prev`);
 const buttonNext = app.querySelector(`.arrows__btn--next`);
 
-const Template = {
+const Screen = {
   WELCOME: templates.content.querySelector(`.main--welcome`),
   GENRE: templates.content.querySelector(`.main--level-genre`),
   ARTIST: templates.content.querySelector(`.main--level-artist`),
@@ -40,43 +41,30 @@ const Template = {
   CONFIRM: templates.content.querySelector(`.modal-confirm__wrap`)
 };
 
-const screens = Object.values(Template);
+const screens = Object.values(Screen);
 
-let currentScreen = 0;
+let current = 0;
 
-const Screen = {
-  PREV: `prev`,
-  NEXT: `next`,
-  FIRST: 0,
-  LAST: screens.length - 1
-};
-
-const showScreen = (screen = 0) => {
-  if (typeof screen === `number`) {
-    currentScreen = screen;
-  } else if (screen === Screen.PREV && currentScreen > Screen.FIRST) {
-    currentScreen--;
-  } else if (screen === Screen.NEXT && currentScreen < Screen.LAST) {
-    currentScreen++;
-  } else {
-    return;
-  }
+const showScreen = (index = 0) => {
+  index = index < 0 ? screens.length - 1 : index;
+  index = index >= screens.length ? 0 : index;
+  current = index;
   container.innerHTML = ``;
-  container.appendChild((screens[currentScreen]).cloneNode(true));
+  container.appendChild((screens[index]).cloneNode(true));
 };
 
 document.addEventListener(`keydown`, (e) => {
   switch (e.keyCode) {
     case Keycode.LEFT:
-      showScreen(Screen.PREV);
+      showScreen(current - 1);
       break;
     case Keycode.RIGHT:
-      showScreen(Screen.NEXT);
+      showScreen(current + 1);
       break;
   }
 });
 
-buttonPrev.addEventListener(`click`, () => showScreen(Screen.PREV));
-buttonNext.addEventListener(`click`, () => showScreen(Screen.NEXT));
+buttonPrev.addEventListener(`click`, () => showScreen(current - 1));
+buttonNext.addEventListener(`click`, () => showScreen(current + 1));
 
 showScreen();
