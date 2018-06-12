@@ -11,4 +11,9 @@ const template = `<section class="main main--welcome">
   </p>
 </section>`;
 
+// const buttonPlay = document.querySelector(`.main-play`);
+// buttonPlay.addEventListener(`click`, function() {
+// 	console.log(`кнопка нажата`);
+// });
+
 export default getElementFromTemplate(template);
