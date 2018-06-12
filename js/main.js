@@ -1,6 +1,10 @@
 import {getElementFromTemplate} from './getElementFromTemplate.js';
+import {showScreen} from './showScreen.js';
 import welcome from './welcome.js';
-import artist from './level-artist.js';
+import levelArtist from './levelArtist.js';
+import levelGenre from './levelGenre.js';
+import resultWin from './resultWin.js';
+import resultLoseTime from './resultLoseTime.js';
+import resultLoseAttempt from './resultLoseAttempt.js';
 
-console.log(getElementFromTemplate(welcome));
-console.log(getElementFromTemplate(artist));
+showScreen(welcome);
