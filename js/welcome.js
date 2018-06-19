@@ -1,4 +1,5 @@
-import {getElementFromTemplate} from './getElementFromTemplate.js';
+import {renderScreen, showScreen} from './util.js';
+import levelArtist from './levelArtist.js';
 
 const template = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -11,9 +12,12 @@ const template = `<section class="main main--welcome">
   </p>
 </section>`;
 
-// const buttonPlay = document.querySelector(`.main-play`);
-// buttonPlay.addEventListener(`click`, function() {
-// 	console.log(`кнопка нажата`);
-// });
+const screenWelcome = renderScreen(template);
 
-export default getElementFromTemplate(template);
+const buttonPlay = screenWelcome.querySelector(`.main-play`);
+
+buttonPlay.addEventListener(`click`, () => {
+  showScreen(levelArtist);
+});
+
+export default screenWelcome;
