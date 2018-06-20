@@ -1,4 +1,7 @@
 import {renderScreen, showScreen} from './util.js';
+import resultWin from './resultWin.js';
+import resultLoseAttempt from './resultLoseAttempt.js';
+import resultLoseTime from './resultLoseTime.js';
 
 const template = `<section class="main main--level main--level-genre">
   <a class="play-again play-again__wrap" href="#">
@@ -85,7 +88,17 @@ const template = `<section class="main main--level main--level-genre">
     </form>
   </div>
 </section>`;
-
 const genre = renderScreen(template);
+const buttonAnswerSend = genre.querySelector(`.genre-answer-send`);
+const answers = Array.from(genre.querySelectorAll(`.genre-answer input`));
+const checkAnswers = () => {
+  const someAnswerChecked = answers.some((el) => el.checked === true);
+  buttonAnswerSend.disabled = !someAnswerChecked;
+};
+
+checkAnswers();
+answers.forEach((item) => {
+  item.addEventListener(`click`, () => checkAnswers());
+});
 
 export default genre;
