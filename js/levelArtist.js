@@ -63,9 +63,9 @@ const template = `<section class="main main--level main--level-artist">
     </form>
   </div>
 </section>`;
-
 const artist = renderScreen(template);
 const answers = artist.querySelectorAll(`.main-answer`);
+
 answers.forEach((item) => {
   item.addEventListener(`click`, () => showScreen(genre));
 });
