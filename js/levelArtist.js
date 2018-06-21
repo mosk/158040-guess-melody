@@ -1,4 +1,5 @@
 import {renderScreen, showScreen} from './util.js';
+import welcome from './welcome.js';
 import genre from './levelGenre.js';
 
 const template = `<section class="main main--level main--level-artist">
@@ -64,7 +65,10 @@ const template = `<section class="main main--level main--level-artist">
   </div>
 </section>`;
 const artist = renderScreen(template);
+const linkPlayAgain = artist.querySelector(`.play-again`);
 const answers = artist.querySelectorAll(`.main-answer`);
+
+linkPlayAgain.addEventListener(`click`, () => showScreen(welcome));
 
 answers.forEach((item) => {
   item.addEventListener(`click`, () => showScreen(genre));

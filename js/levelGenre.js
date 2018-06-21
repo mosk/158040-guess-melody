@@ -1,4 +1,5 @@
 import {renderScreen, showScreen, getRandom} from './util.js';
+import welcome from './welcome.js';
 import resultWin from './resultWin.js';
 import resultLoseAttempt from './resultLoseAttempt.js';
 import resultLoseTime from './resultLoseTime.js';
@@ -89,6 +90,7 @@ const template = `<section class="main main--level main--level-genre">
   </div>
 </section>`;
 const genre = renderScreen(template);
+const linkPlayAgain = genre.querySelector(`.play-again`);
 const buttonAnswerSend = genre.querySelector(`.genre-answer-send`);
 const answers = Array.from(genre.querySelectorAll(`.genre-answer input`));
 const checkAnswers = () => {
@@ -97,6 +99,8 @@ const checkAnswers = () => {
 };
 const resultScreens = [resultWin, resultLoseAttempt, resultLoseTime];
 const randomResultScreen = resultScreens[getRandom(resultScreens.length)];
+
+linkPlayAgain.addEventListener(`click`, () => showScreen(welcome));
 
 checkAnswers();
 answers.forEach((item) => {
