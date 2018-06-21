@@ -1,4 +1,4 @@
-import {renderScreen, showScreen} from './util.js';
+import {renderScreen, showScreen, getRandom} from './util.js';
 import resultWin from './resultWin.js';
 import resultLoseAttempt from './resultLoseAttempt.js';
 import resultLoseTime from './resultLoseTime.js';
@@ -95,10 +95,14 @@ const checkAnswers = () => {
   const someAnswerChecked = answers.some((el) => el.checked === true);
   buttonAnswerSend.disabled = !someAnswerChecked;
 };
+const resultScreens = [resultWin, resultLoseAttempt, resultLoseTime];
+const randomResultScreen = resultScreens[getRandom(resultScreens.length)];
 
 checkAnswers();
 answers.forEach((item) => {
   item.addEventListener(`click`, () => checkAnswers());
 });
+
+buttonAnswerSend.addEventListener(`click`, () => showScreen(randomResultScreen));
 
 export default genre;
