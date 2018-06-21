@@ -12,3 +12,7 @@ export const showScreen = (screen) => {
   main.innerHTML = ``;
   main.appendChild(screen);
 };
+
+export const getRandom = (max, min = 0) => {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
