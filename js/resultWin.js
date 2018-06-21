@@ -1,5 +1,5 @@
 import {renderScreen, showScreen} from './util.js';
-import artist from './levelArtist.js';
+import welcome from './welcome.js';
 
 const template = `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -13,6 +13,6 @@ const template = `<section class="main main--result">
 const resultWin = renderScreen(template);
 const buttonReplay = resultWin.querySelector(`.main-replay`);
 
-buttonReplay.addEventListener(`click`, () => showScreen(artist));
+buttonReplay.addEventListener(`click`, () => showScreen(welcome));
 
 export default resultWin;
