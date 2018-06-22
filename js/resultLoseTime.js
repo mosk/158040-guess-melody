@@ -1,5 +1,5 @@
-import {renderScreen, showScreen} from './util.js';
-import welcome from './welcome.js';
+import {renderScreen, showScreen} from './util';
+import welcome from './welcome';
 
 const template = `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>

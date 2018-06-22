@@ -1,8 +1,8 @@
-import {renderScreen, showScreen, getRandom} from './util.js';
-import welcome from './welcome.js';
-import resultWin from './resultWin.js';
-import resultLoseAttempt from './resultLoseAttempt.js';
-import resultLoseTime from './resultLoseTime.js';
+import {renderScreen, showScreen, getRandom} from './util';
+import welcome from './welcome';
+import resultWin from './resultWin';
+import resultLoseAttempt from './resultLoseAttempt';
+import resultLoseTime from './resultLoseTime';
 
 const template = `<section class="main main--level main--level-genre">
   <a class="play-again play-again__wrap" href="#">

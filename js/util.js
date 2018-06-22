@@ -1,16 +1,15 @@
-const app = document.querySelector(`.app`);
-const main = app.querySelector(`section.main`);
+const app = document.querySelector(`section.app`);
 
 export const renderScreen = (template) => {
   const container = document.createElement(`template`);
   container.innerHTML = template;
 
-  return container.content;
+  return container.content.firstChild;
 };
 
 export const showScreen = (screen) => {
-  main.innerHTML = ``;
-  main.appendChild(screen);
+  app.innerHTML = ``;
+  app.appendChild(screen);
 };
 
 export const getRandom = (max, min = 0) => {

@@ -1,6 +1,6 @@
-import {renderScreen, showScreen} from './util.js';
-import welcome from './welcome.js';
-import genre from './levelGenre.js';
+import {renderScreen, showScreen} from './util';
+import welcome from './welcome';
+import genre from './levelGenre';
 
 const template = `<section class="main main--level main--level-artist">
   <a class="play-again play-again__wrap" href="#">

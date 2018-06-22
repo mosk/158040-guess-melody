@@ -1,5 +1,5 @@
-import {renderScreen, showScreen} from './util.js';
-import artist from './levelArtist.js';
+import {renderScreen, showScreen} from './util';
+import artist from './levelArtist';
 
 const template = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
