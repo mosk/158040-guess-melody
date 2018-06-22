@@ -1,4 +1,4 @@
-const app = document.querySelector(`section.app`);
+const app = document.querySelector(`.app`);
 
 export const renderScreen = (template) => {
   const container = document.createElement(`template`);
