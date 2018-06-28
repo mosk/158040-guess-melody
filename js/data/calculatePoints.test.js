@@ -66,29 +66,29 @@ const userAnswers6 = [
   {answer: true, time: 89}
 ];
 
-describe(`Подсчёт баллов`, () => {
-  it(`Должно вернуться -1, если игрок ответил меньше, чем на 10 вопросов`, () => {
+describe(`Calculate points`, () => {
+  it(`Should return -1 if answered less then 10 questions`, () => {
     assert.equal(calculatePoints(userAnswers1), -1);
     assert.equal(calculatePoints(userAnswers2), -1);
   });
 
-  it(`Должно вернуться 10, если игрок ответил на все вопросы правильно и не быстро, и ни разу не ошибся`, () => {
+  it(`Should return 10 if asnswered all questions right and slow`, () => {
     assert.equal(calculatePoints(userAnswers3), 10);
   });
 
-  it(`Должно вернуться 20, если игрок ответил на все вопросы правильно и быстро, и ни разу не ошибся`, () => {
+  it(`Should return 20 if asnswered all questions right and fast`, () => {
     assert.equal(calculatePoints(userAnswers4), 20);
   });
 
-  it(`Должно вернуться -1, если количество жизней равно 0`, () => {
+  it(`Should return -1 if make 2 or more mistakes`, () => {
     assert.equal(calculatePoints(userAnswers3, 0), -1);
   });
 
-  it(`Должно вернуться 12, если игрок ответил на 8 вопросов правильно и быстро`, () => {
+  it(`Should return 12 if asnswered 8 questions right and fast`, () => {
     assert.equal(calculatePoints(userAnswers5), 12);
   });
 
-  it(`Должно вернуться 7, если игрок ответил на 9 вопросов правильно и медленно`, () => {
+  it(`Should return 7 if asnswered 9 questions right and slow`, () => {
     assert.equal(calculatePoints(userAnswers6), 7);
   });
 });

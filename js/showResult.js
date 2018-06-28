@@ -8,9 +8,9 @@ export const showResult = (results, result) => {
   }
 
   const sortedResults = results.concat(result).sort((a, b) => b.points - a.points);
-  const place = sortedResults.indexOf(result);
+  const place = sortedResults.indexOf(result) + 1;
   const amountPlayers = sortedResults.length;
-  const rate = (amountPlayers - sortedResults[place]) / amountPlayers * 100;
+  const rate = (amountPlayers - place) / amountPlayers * 100;
 
   return `Вы заняли ${place} место из ${amountPlayers} игроков. Это лучше, чем у ${rate}% игроков`;
 };
