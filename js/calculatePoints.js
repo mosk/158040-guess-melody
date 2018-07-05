@@ -1,9 +1,6 @@
-const FAST_ANSWER_TIME = 29;
-const TOTAL_QUESTIONS = 10;
-const LOOSE_POINTS = -1;
-const ATTEMPTS = 2;
+import {GAME_SETTINGS} from './gameSettings';
 
-export const calculatePoints = (answers, lives = ATTEMPTS) => {
+export const calculatePoints = (answers, lives = GAME_SETTINGS.attempts) => {
   if (typeof lives !== `number`) {
     throw new Error(`Количество жизней должно быть числом`);
   }
@@ -12,13 +9,13 @@ export const calculatePoints = (answers, lives = ATTEMPTS) => {
     throw new Error(`Количество жизней не должно быть отрицательным числом`);
   }
 
-  if (answers.length < TOTAL_QUESTIONS || lives === 0) {
-    return LOOSE_POINTS;
+  if (answers.length < GAME_SETTINGS.totalQuestions || lives === 0) {
+    return GAME_SETTINGS.loosePoints;
   }
 
   const points = answers.map((item) => {
     if (item.answer === true) {
-      if (item.time <= FAST_ANSWER_TIME) {
+      if (item.time <= GAME_SETTINGS.fastAnswerTime) {
         item = 2;
       } else {
         item = 1;

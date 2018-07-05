@@ -2,7 +2,7 @@ const app = document.querySelector(`.app`);
 
 export const renderScreen = (template) => {
   const container = document.createElement(`template`);
-  container.innerHTML = template;
+  container.innerHTML = template.trim();
 
   return container.content.firstChild;
 };

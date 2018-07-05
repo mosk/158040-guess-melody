@@ -4,7 +4,7 @@ export const createTimer = (seconds) => {
   }
 
   if (seconds < 0) {
-    throw new Error(`Время не должно быть отрицательынм числом!`);
+    throw new Error(`Время не должно быть отрицательным числом!`);
   }
 
   return {
